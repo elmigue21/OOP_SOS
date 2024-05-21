@@ -4,6 +4,7 @@
  */
 package com.mycompany.group4sos;
 
+import com.mycompany.group4sos.Player;
 import java.awt.GridLayout;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.*;
 import java.awt.*;
+import java.net.URL;
 import javax.swing.border.*;
 import java.util.Timer;
 import javax.swing.JFrame;          //DINAGDAG KO KIEL
@@ -36,14 +38,9 @@ public class SOS extends javax.swing.JFrame {
     public SOS() {
         initComponents();
 
-        
-        p1 = new Player("Blue");
-        p2 = new Player("Red");
-        
         //p1 = new Rick("Red");
-       // p2 = new Dexter("Blue");
+        // p2 = new Dexter("Blue");
         //JOptionPane.showMessageDialog(null, rick.picture + rick.PlayerColor, "Message Box", JOptionPane.INFORMATION_MESSAGE);
-
         clr = "blue";
         ButtonGroup blueButtonGroup = new ButtonGroup();
         blueButtonGroup.add(jRadioButton1);
@@ -516,7 +513,7 @@ public class SOS extends javax.swing.JFrame {
     }
 
     private void switchPlayer() {
-        
+
         if (isBluePlayer) {
             turnLbl.setText("BLUE Player's Turn");
             bodyPanel.setBackground(new Color(0, 102, 204));
@@ -802,6 +799,7 @@ public class SOS extends javax.swing.JFrame {
         redAvatar.setIcon(new ImageIcon(getClass().getResource("/select.png")));
         jPanel3.revalidate();
         jPanel3.repaint();
+
     }
 
     private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
@@ -871,13 +869,20 @@ public class SOS extends javax.swing.JFrame {
             }
 
             ////////////////
-
             //p1.avatar.setIcon(new ImageIcon(getClass().getResource("/" + p1.picture + ".png")));
-
-            p1 = setCharacter(p1, "Blue", blueAvatar, blueName);
-            p2 = setCharacter(p2, "Red", redAvatar, redName);
+            // p1 = setCharacter(p1, "Blue", blueAvatar, blueName);
+            //  p2 = setCharacter(p2, "Red", redAvatar, redName);
+            p1 = Player.createPlayer(Color.BLUE);
+            p2 = Player.createPlayer(Color.RED);
             playerBlueScore = p1.score;
-            playerRedScore= p2.score;
+
+            blueAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p1.picture + ".png")));
+            blueName.setText(p1.getPlayerName());
+
+            //p2 = Player.createPlayer(Color.RED);
+            playerRedScore = p2.score;
+            redAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p2.picture + ".png")));
+            redName.setText(p2.getPlayerName());
             //JOptionPane.showMessageDialog(null, p1.avatar);
 
         }
@@ -895,6 +900,7 @@ public class SOS extends javax.swing.JFrame {
         return true; // All buttons are filled
     }
 
+    /*
     public Player setCharacter(Player player, String col, JLabel avat, JLabel lblName) {
     String[] charSelect = {"Dexter's Laboratory", "Jimmy Neutron", "Megamind", "Heinz Doofenshmirtz", "Rick Sanchez", "Stewie Griffin", "Velma Dinkley"};
      JComboBox cSelect = new JComboBox(charSelect);
@@ -902,25 +908,25 @@ public class SOS extends javax.swing.JFrame {
     if (characOption == JOptionPane.OK_OPTION) {
         switch (cSelect.getSelectedIndex()) {
             case 0:
-                player = new Dexter(col);
+                player = new Dexter(Color.RED);
                 break;
             case 1:
-                player = new Jimmy(col);
+                player = new Jimmy(player.getPlayerColor());
                 break;
             case 2:
-                player = new Megamind(col);
+                player = new Megamind(player.getPlayerColor());
                 break;
             case 3:
-                player = new Doofenshmirtz(col);
+                player = new Doofenshmirtz(player.getPlayerColor());
                 break;
             case 4:
-                player = new Rick(col);
+                player = new Rick(player.getPlayerColor());
                 break;
             case 5:
-                player = new Stewie(col);
+                player = new Stewie(player.getPlayerColor());
                 break;
             case 6:
-                player = new Velma(col);
+                player = new Velma(player.getPlayerColor());
                 break;
         }
         player.avatar = avat;
@@ -928,14 +934,13 @@ public class SOS extends javax.swing.JFrame {
         player.avatar.setIcon(new ImageIcon(getClass().getResource("/" + player.picture + ".png")));
         player.nameLabel.setText(player.name);
         return player;
+    
     } else {
 
         initializeGame();
         return player;
     }
-}
-
-
+     */
 // Method to determine the winner
     private void determineWinner() {
         if (playerRedScore > playerBlueScore) {
@@ -956,14 +961,14 @@ public class SOS extends javax.swing.JFrame {
 
     private void btnMechanicsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMechanicsActionPerformed
         StringBuilder message = new StringBuilder();
-            message.append("<html><ul>");
-            message.append("<li>The game is played by two players taking turns in <br> placing \"S\" or \"O\" on the cells of the game grid.</li>");
-            message.append("<li>The player that successfully creates an \"SOS\" pattern <br> either horizontally, vertically, or diagonally earns a point and <br> the next turn.</li>");
-            message.append("<li>The game ends when all cells of the game grid as filled by <br> either \"S\" or \"O\" by the players.</li>");
-            message.append("<li>The player with the most points collected wins the game.</li>");
-            message.append("</ul></html>");
+        message.append("<html><ul>");
+        message.append("<li>The game is played by two players taking turns in <br> placing \"S\" or \"O\" on the cells of the game grid.</li>");
+        message.append("<li>The player that successfully creates an \"SOS\" pattern <br> either horizontally, vertically, or diagonally earns a point and <br> the next turn.</li>");
+        message.append("<li>The game ends when all cells of the game grid as filled by <br> either \"S\" or \"O\" by the players.</li>");
+        message.append("<li>The player with the most points collected wins the game.</li>");
+        message.append("</ul></html>");
 
-            JOptionPane.showMessageDialog(SOS.this, message.toString(), "Game Mechanics", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(SOS.this, message.toString(), "Game Mechanics", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnMechanicsActionPerformed
 
     /**
@@ -1023,6 +1028,7 @@ public class SOS extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SOS().setVisible(true);
+
             }
         });
 
