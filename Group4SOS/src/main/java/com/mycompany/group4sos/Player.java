@@ -15,7 +15,7 @@ import java.util.TimerTask;
  */
 public class Player {
     public String name;
-    public int score;
+    private int score;
    public  String picture;
     public Color PlayerColor;
     public String[] catchphrases;
@@ -27,8 +27,15 @@ public class Player {
     public Player(){
         //this.name = nm;
         //this.PlayerColor = playerColor;
-        //score = 0;
+        this.score = 0;
 
+    }
+    public void AddScore(){
+       // JOptionPane.showMessageDialog(null, "addscore");
+        this.score++;
+    }
+    public int GetScore(){
+        return this.score;
     }
     
         public static Player createPlayer(Color pCol) {
@@ -120,7 +127,7 @@ public class Player {
 class Dexter extends Player {
     
     public Dexter(Color clr) {
-        this.score = 0;
+        //this.score = 0;
         this.PlayerColor = clr;
         this.name = "Dexter";
         this.picture = "dexter1";
@@ -130,12 +137,15 @@ class Dexter extends Player {
     public String getPlayerName(){
             return "Dexter";
         }
+    public void Add(){
+        AddScore();
+    }
 }
 
 class Jimmy extends Player {
     
     public Jimmy(Color clr ) {
-         this.score = 0;
+        // this.score = 0;
         this.PlayerColor = clr;
         this.name = "Jimmy";
         this.picture = "jimmyneutron1";
@@ -150,7 +160,7 @@ class Jimmy extends Player {
 class Megamind extends Player {
     
     public Megamind(Color clr) {
-         this.score = 0;
+       //  this.score = 0;
         this.PlayerColor = clr;
         this.name = "Megamind";
         this.picture = "megamind";
@@ -164,7 +174,7 @@ class Megamind extends Player {
 class Doofenshmirtz extends Player {
     
     public Doofenshmirtz( Color clr) {
-         this.score = 0;
+       //  this.score = 0;
         this.PlayerColor = clr;
         this.picture = "Doofenshmirtz";
         this.catchphrases = new String[]{"/doofenshnirtzCatchPhrase1.png", "/doofenshnirtzCatchPhrase2.png"};
@@ -177,7 +187,7 @@ class Doofenshmirtz extends Player {
 class Rick extends Player {
     
     public Rick(Color clr) {
-         this.score = 0;
+       //  this.score = 0;
        this.PlayerColor = clr;
         this.name = "Rick";
         this.picture = "rick1";
@@ -191,7 +201,7 @@ class Rick extends Player {
 class Stewie extends Player {
     
     public Stewie(Color clr) {
-         this.score = 0;
+        // this.score = 0;
        this.PlayerColor = clr;
         this.name = "Stewie";
         this.picture = "stewie1";
@@ -205,7 +215,7 @@ class Stewie extends Player {
 class Velma extends Player {
     
     public Velma(Color clr) {
-         this.score = 0;
+         //this.score = 0;
        this.PlayerColor = clr;
         this.name = "Velma";
         this.picture = "velma1";

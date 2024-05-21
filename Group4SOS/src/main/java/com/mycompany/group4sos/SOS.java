@@ -583,8 +583,8 @@ public class SOS extends javax.swing.JFrame {
 
     //basta add lng sa mga method
     private void updateScoreLabels() {
-        blueScore.setText(Integer.toString(playerBlueScore));
-        redScore.setText(Integer.toString(playerRedScore));
+        blueScore.setText(Integer.toString(p1.GetScore()));
+        redScore.setText(Integer.toString(p2.GetScore()));
     }
 
     private boolean checkDirectionS(int index1, int index2, int numRows, int numCols, int mainIndex) {
@@ -608,7 +608,7 @@ public class SOS extends javax.swing.JFrame {
                         highlightCellBlue(mainButton);
                         highlightCellBlue(button1);
                         highlightCellBlue(button2);
-                        playerBlueScore++;
+                        p1.AddScore();
                         updateScoreLabels();
                     } else if (bodyPanel.getBackground().equals(new Color(102, 0, 0))) {
 
@@ -618,7 +618,7 @@ public class SOS extends javax.swing.JFrame {
                         highlightCellRed(mainButton);
                         highlightCellRed(button1);
                         highlightCellRed(button2);
-                        playerRedScore++;
+                        p2.AddScore();
                         updateScoreLabels();
                     }
                     return true;
@@ -650,7 +650,7 @@ public class SOS extends javax.swing.JFrame {
                         highlightCellBlue(mainButton);
                         highlightCellBlue(button1);
                         highlightCellBlue(button2);
-                        playerBlueScore++;
+                        p1.AddScore();
                         updateScoreLabels();
                     } else if (bodyPanel.getBackground().equals(new Color(102, 0, 0))) {
                         p2.PlayCatchphrase(catchPhraseRed, p2);
@@ -658,7 +658,7 @@ public class SOS extends javax.swing.JFrame {
                         highlightCellRed(mainButton);
                         highlightCellRed(button1);
                         highlightCellRed(button2);
-                        playerRedScore++;
+                        p2.AddScore();
                         updateScoreLabels();
                     }
                     return true;
@@ -874,13 +874,13 @@ public class SOS extends javax.swing.JFrame {
             //  p2 = setCharacter(p2, "Red", redAvatar, redName);
             p1 = Player.createPlayer(Color.BLUE);
             p2 = Player.createPlayer(Color.RED);
-            playerBlueScore = p1.score;
+            playerBlueScore = p1.GetScore();
 
             blueAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p1.picture + ".png")));
             blueName.setText(p1.getPlayerName());
 
             //p2 = Player.createPlayer(Color.RED);
-            playerRedScore = p2.score;
+            playerRedScore = p2.GetScore();
             redAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p2.picture + ".png")));
             redName.setText(p2.getPlayerName());
             //JOptionPane.showMessageDialog(null, p1.avatar);
@@ -943,11 +943,12 @@ public class SOS extends javax.swing.JFrame {
      */
 // Method to determine the winner
     private void determineWinner() {
-        if (playerRedScore > playerBlueScore) {
+       // JOptionPane.showMessageDialog(null, p2.GetScore());
+        if (p2.GetScore() > p1.GetScore()) {
             JOptionPane.showMessageDialog(null, "Red Player Wins!");
             //catchPhraseBlue(p1.winCatchphrase);
             p1.WinCatchphrase(catchPhraseRed, p2);
-        } else if (playerRedScore < playerBlueScore) {
+        } else if (p2.GetScore() < p1.GetScore()) {
             JOptionPane.showMessageDialog(null, "Blue Player Wins!");
             //catchPhraseRed(p2.winCatchphrase);
             p2.WinCatchphrase(catchPhraseBlue, p1);
