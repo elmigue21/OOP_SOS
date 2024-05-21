@@ -31,16 +31,11 @@ public class SOS extends javax.swing.JFrame {
     private int playerRedScore = 0;
     private int playerBlueScore = 0;
     int gridSize;
-
     Player p1;
     Player p2;
 
     public SOS() {
         initComponents();
-
-        //p1 = new Rick("Red");
-        // p2 = new Dexter("Blue");
-        //JOptionPane.showMessageDialog(null, rick.picture + rick.PlayerColor, "Message Box", JOptionPane.INFORMATION_MESSAGE);
         clr = "blue";
         ButtonGroup blueButtonGroup = new ButtonGroup();
         blueButtonGroup.add(jRadioButton1);
@@ -48,19 +43,16 @@ public class SOS extends javax.swing.JFrame {
         ButtonGroup redButtonGroup = new ButtonGroup();
         redButtonGroup.add(jRadioButton3);
         redButtonGroup.add(jRadioButton4);
-
         jRadioButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 handleRadioButtonSelection(jRadioButton1);
             }
         });
-
         jRadioButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 handleRadioButtonSelection(jRadioButton2);
             }
         });
-
         jRadioButton3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 handleRadioButtonSelection(jRadioButton3);
@@ -71,7 +63,6 @@ public class SOS extends javax.swing.JFrame {
                 handleRadioButtonSelection(jRadioButton4);
             }
         });
-
         setTitle("SOS Game");                                                       // DINAGDAG KO KIEL
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);        // DINAGDAG KO KIEL
     }
@@ -491,29 +482,24 @@ public class SOS extends javax.swing.JFrame {
                 System.out.println("Option 1 is selected.");
                 sel = "S";
                 clr = "blue";
-
             } else if (selectedRadioButton == jRadioButton2) {
                 System.out.println("Option 2 is selected.");
                 sel = "O";
                 clr = "blue";
-
             } else if (selectedRadioButton == jRadioButton3) {
                 System.out.println("Option 3 is selected.");
                 sel = "S";
                 clr = "red";
-
             } else if (selectedRadioButton == jRadioButton4) {
                 System.out.println("Option 4 is selected.");
                 sel = "O";
                 clr = "red";
-
             }
         }
         System.out.println("selection: " + sel + "\n" + "color: " + clr);
     }
 
     private void switchPlayer() {
-
         if (isBluePlayer) {
             turnLbl.setText("BLUE Player's Turn");
             bodyPanel.setBackground(new Color(0, 102, 204));
@@ -530,7 +516,6 @@ public class SOS extends javax.swing.JFrame {
             jRadioButton2.setEnabled(true);
             blueAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p1.picture + ".png")));
             redAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p2.picture + "Dark.png")));
-
             jPanel2.setBackground(new Color(51, 0, 0));
             jPanel2.setBorder(new BevelBorder(BevelBorder.LOWERED));
             jRadioButton3.setBackground(new Color(51, 0, 0));
@@ -544,7 +529,6 @@ public class SOS extends javax.swing.JFrame {
             jRadioButton4.setEnabled(false);
             handleRadioButtonSelection(jRadioButton1);
             handleRadioButtonSelection(jRadioButton2);
-
             isBluePlayer = false;
         } else {
             turnLbl.setText("RED Player's Turn");
@@ -562,7 +546,6 @@ public class SOS extends javax.swing.JFrame {
             jRadioButton2.setEnabled(false);
             redAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p2.picture + ".png")));
             blueAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p1.picture + "Dark.png")));
-
             jPanel2.setBackground(new Color(102, 0, 0));
             jPanel2.setBorder(new BevelBorder(BevelBorder.RAISED));
             jRadioButton3.setBackground(new Color(102, 0, 0));
@@ -576,7 +559,6 @@ public class SOS extends javax.swing.JFrame {
             jRadioButton4.setEnabled(true);
             handleRadioButtonSelection(jRadioButton3);
             handleRadioButtonSelection(jRadioButton4);
-
             isBluePlayer = true;
         }
     }
@@ -594,27 +576,19 @@ public class SOS extends javax.swing.JFrame {
         if (index1 >= 0 && index1 < numRows * numCols && index2 >= 0 && index2 < numRows * numCols) {
             JButton button1 = (JButton) gridPanel.getComponent(index1);
             JButton button2 = (JButton) gridPanel.getComponent(index2);
-
             JButton mainButton = (JButton) gridPanel.getComponent(mainIndex);
             if (mainButton.getText().equals("S")) {
-
                 if (button1.getText().equals("O") && button2.getText().equals("S")) {
                     System.out.println("SOS found in direction S");
-
                     if (bodyPanel.getBackground().equals(new Color(0, 102, 204))) {
                         p1.PlayCatchphrase(catchPhraseBlue, p1);
-                        //catchPhraseBlue(p1.catchphrases);
-
                         highlightCellBlue(mainButton);
                         highlightCellBlue(button1);
                         highlightCellBlue(button2);
                         p1.AddScore();
                         updateScoreLabels();
                     } else if (bodyPanel.getBackground().equals(new Color(102, 0, 0))) {
-
-                        //catchPhraseRed(p2.catchphrases);
                         p2.PlayCatchphrase(catchPhraseRed, p2);
-
                         highlightCellRed(mainButton);
                         highlightCellRed(button1);
                         highlightCellRed(button2);
@@ -623,11 +597,8 @@ public class SOS extends javax.swing.JFrame {
                     }
                     return true;
                 }
-
             }
-
         }
-
         return false;
     }
 
@@ -638,7 +609,6 @@ public class SOS extends javax.swing.JFrame {
         if (index1 >= 0 && index1 < numRows * numCols && index2 >= 0 && index2 < numRows * numCols) {
             JButton button1 = (JButton) gridPanel.getComponent(index1);
             JButton button2 = (JButton) gridPanel.getComponent(index2);
-
             JButton mainButton = (JButton) gridPanel.getComponent(mainIndex);
             boolean swt = false;
             if (mainButton.getText().equals("O")) {
@@ -646,7 +616,6 @@ public class SOS extends javax.swing.JFrame {
                     System.out.println("S O S ");
                     if (bodyPanel.getBackground().equals(new Color(0, 102, 204))) {
                         p1.PlayCatchphrase(catchPhraseBlue, p1);
-                        //catchPhraseBlue(p1.catchphrases);
                         highlightCellBlue(mainButton);
                         highlightCellBlue(button1);
                         highlightCellBlue(button2);
@@ -654,7 +623,6 @@ public class SOS extends javax.swing.JFrame {
                         updateScoreLabels();
                     } else if (bodyPanel.getBackground().equals(new Color(102, 0, 0))) {
                         p2.PlayCatchphrase(catchPhraseRed, p2);
-                        //catchPhraseRed(p1.catchphrases);
                         highlightCellRed(mainButton);
                         highlightCellRed(button1);
                         highlightCellRed(button2);
@@ -663,11 +631,8 @@ public class SOS extends javax.swing.JFrame {
                     }
                     return true;
                 }
-
             }
-
         }
-
         return false;
     }
 
@@ -690,60 +655,46 @@ public class SOS extends javax.swing.JFrame {
     }
 
     private void CheckCells(int index, int num) {
-        int numRows = num; // Assuming a 5x5 grid, you can adjust this according to your grid size
+        int numRows = num;
         int numCols = num;
         int row = index / numCols;
         int col = index % numCols;
-
         int leftIndex = -1;
         int leftIndex2 = -1;
         int topLeftIndex = -1;
         int topLeftIndex2 = -1;
         int bottomLeftIndex = -1;
         int bottomLeftIndex2 = -1;
-
         int rightIndex = -1;
         int rightIndex2 = -1;
         int topRightIndex = -1;
         int topRightIndex2 = -1;
         int bottomRightIndex = -1;
         int bottomRightIndex2 = -1;
-
-        // Calculate indices of adjacent cells
         if (index % num != 1) {
-            //JOptionPane.showMessageDialog(this, "ind"+index+"num"+num+"res"+index%num);
             leftIndex = index - 1;
-
             topLeftIndex = index - numCols - 1;
-
             bottomLeftIndex = index + numCols - 1;
-
             if (index % num != 2) {
                 leftIndex2 = leftIndex - 1;
                 topLeftIndex2 = topLeftIndex - numCols - 1;
                 bottomLeftIndex2 = bottomLeftIndex + numCols - 1;
             }
-
         }
         int topIndex = index - numCols;
         int topIndex2 = topIndex - numCols;
-
         if (index % num != 0) {
             rightIndex = index + 1;
             topRightIndex = index - numCols + 1;
             bottomRightIndex = index + numCols + 1;
-
             if (index % num != num - 1) {
-                //JOptionPane.showMessageDialog(this, "ind"+index+"num"+num+"res"+index%num);
                 rightIndex2 = rightIndex + 1;
                 topRightIndex2 = topRightIndex - numCols + 1;
                 bottomRightIndex2 = bottomRightIndex + numCols + 1;
             }
-
         }
         int bottomIndex = index + numCols;
         int bottomIndex2 = bottomIndex + numCols;
-
         boolean a = checkDirectionS(leftIndex, leftIndex2, numRows, numCols, index);
         boolean b = checkDirectionS(topIndex, topIndex2, numRows, numCols, index);
         boolean c = checkDirectionS(rightIndex, rightIndex2, numRows, numCols, index);
@@ -753,7 +704,6 @@ public class SOS extends javax.swing.JFrame {
         boolean f = checkDirectionS(topRightIndex, topRightIndex2, numRows, numCols, index);
         boolean g = checkDirectionS(bottomLeftIndex, bottomLeftIndex2, numRows, numCols, index);
         boolean h = checkDirectionS(bottomRightIndex, bottomRightIndex2, numRows, numCols, index);
-
         boolean i = checkDirectionO(leftIndex, rightIndex, numRows, numCols, index);
         boolean j = checkDirectionO(topIndex, bottomIndex, numRows, numCols, index);
         boolean k = checkDirectionO(topLeftIndex, bottomRightIndex, numRows, numCols, index);
@@ -765,13 +715,11 @@ public class SOS extends javax.swing.JFrame {
                 palit = false;
                 break;
             } else {
-
             }
         }
         if (palit) {
             switchPlayer();
         }
-
     }
 
     /**
@@ -799,15 +747,12 @@ public class SOS extends javax.swing.JFrame {
         redAvatar.setIcon(new ImageIcon(getClass().getResource("/select.png")));
         jPanel3.revalidate();
         jPanel3.repaint();
-
     }
 
     private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
-
         initializeGame();
         String[] gridType = {"5x5", "10x10", "15x15"};
         JComboBox gType = new JComboBox(gridType);
-
         int gridOption = JOptionPane.showConfirmDialog(null, gType, "Select Grid Type", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (gridOption == JOptionPane.OK_OPTION) {
             switch (gType.getSelectedIndex()) {
