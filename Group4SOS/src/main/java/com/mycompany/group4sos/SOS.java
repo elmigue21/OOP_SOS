@@ -825,7 +825,13 @@ public class SOS extends javax.swing.JFrame {
             gridPanel.setLayout(new GridLayout(gridSize, gridSize));
             for (int i = 1; i <= (gridSize * gridSize); i++) {
                 JButton button = new JButton("");
-                button.setFont(new Font("Will", Font.PLAIN, 45));
+                if (gridSize == 5) {
+                    button.setFont(new Font("Will", Font.PLAIN, 65));
+                } else if (gridSize == 10) {
+                    button.setFont(new Font("Will", Font.PLAIN, 45));
+                } else if (gridSize == 15) {
+                    button.setFont(new Font("Will", Font.PLAIN, 30));
+                }
                 button.setBackground(new Color(224, 126, 63, 255));
                 button.setIcon(new ImageIcon(getClass().getResource("/gridButton5x5.png")));
                 button.setHorizontalTextPosition(JLabel.CENTER);
@@ -869,9 +875,7 @@ public class SOS extends javax.swing.JFrame {
             }
 
             ////////////////
-            //p1.avatar.setIcon(new ImageIcon(getClass().getResource("/" + p1.picture + ".png")));
-            // p1 = setCharacter(p1, "Blue", blueAvatar, blueName);
-            //  p2 = setCharacter(p2, "Red", redAvatar, redName);
+
             p1 = Player.createPlayer(Color.BLUE);
             p2 = Player.createPlayer(Color.RED);
             playerBlueScore = p1.GetScore();
@@ -879,11 +883,11 @@ public class SOS extends javax.swing.JFrame {
             blueAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p1.picture + ".png")));
             blueName.setText(p1.getPlayerName());
 
-            //p2 = Player.createPlayer(Color.RED);
+
             playerRedScore = p2.GetScore();
             redAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p2.picture + ".png")));
             redName.setText(p2.getPlayerName());
-            //JOptionPane.showMessageDialog(null, p1.avatar);
+
 
         }
     }//GEN-LAST:event_newGameBtnActionPerformed
@@ -900,50 +904,9 @@ public class SOS extends javax.swing.JFrame {
         return true; // All buttons are filled
     }
 
-    /*
-    public Player setCharacter(Player player, String col, JLabel avat, JLabel lblName) {
-    String[] charSelect = {"Dexter's Laboratory", "Jimmy Neutron", "Megamind", "Heinz Doofenshmirtz", "Rick Sanchez", "Stewie Griffin", "Velma Dinkley"};
-     JComboBox cSelect = new JComboBox(charSelect);
-    int characOption = JOptionPane.showConfirmDialog(null, cSelect, "Select Character for " + col, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-    if (characOption == JOptionPane.OK_OPTION) {
-        switch (cSelect.getSelectedIndex()) {
-            case 0:
-                player = new Dexter(Color.RED);
-                break;
-            case 1:
-                player = new Jimmy(player.getPlayerColor());
-                break;
-            case 2:
-                player = new Megamind(player.getPlayerColor());
-                break;
-            case 3:
-                player = new Doofenshmirtz(player.getPlayerColor());
-                break;
-            case 4:
-                player = new Rick(player.getPlayerColor());
-                break;
-            case 5:
-                player = new Stewie(player.getPlayerColor());
-                break;
-            case 6:
-                player = new Velma(player.getPlayerColor());
-                break;
-        }
-        player.avatar = avat;
-        player.nameLabel = lblName;
-        player.avatar.setIcon(new ImageIcon(getClass().getResource("/" + player.picture + ".png")));
-        player.nameLabel.setText(player.name);
-        return player;
-    
-    } else {
-
-        initializeGame();
-        return player;
-    }
-     */
 // Method to determine the winner
     private void determineWinner() {
-       // JOptionPane.showMessageDialog(null, p2.GetScore());
+        // JOptionPane.showMessageDialog(null, p2.GetScore());
         if (p2.GetScore() > p1.GetScore()) {
             JOptionPane.showMessageDialog(null, "Red Player Wins!");
             //catchPhraseBlue(p1.winCatchphrase);
