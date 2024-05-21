@@ -16,7 +16,6 @@ public class Mechanics extends javax.swing.JFrame {
     public Mechanics() {
         initComponents();
         setLocationRelativeTo(null);
-
     }
 
     /**

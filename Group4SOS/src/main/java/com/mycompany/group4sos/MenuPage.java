@@ -164,9 +164,6 @@ public static void main(String args[]) {
     });
 }
 
-
-
-
 private void addListeners() {
     btnPlay.addActionListener(new ActionListener() {
         @Override
@@ -192,8 +189,6 @@ private void addListeners() {
         }
     });
 }
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MenuPanel;

@@ -787,7 +787,6 @@ public class SOS extends javax.swing.JFrame {
                         int index = gridPanel.getComponentZOrder((Component) e.getSource()); // Get index of the button clicked
                         System.out.println("Button index: " + index);
                         if (button.getText().equals("")) {
-
                             button.setText(sel);
                             if (clr.equals("red")) {
                                 button.setForeground(Color.RED); // Set background color to red
@@ -805,8 +804,6 @@ public class SOS extends javax.swing.JFrame {
             }
             gridPanel.revalidate();
             gridPanel.repaint();
-            //////////////////
-
             if (isBluePlayer) {
                 jRadioButton3.setSelected(true);
                 jRadioButton1.setSelected(true);
@@ -818,22 +815,14 @@ public class SOS extends javax.swing.JFrame {
                 handleRadioButtonSelection(jRadioButton3);
                 handleRadioButtonSelection(jRadioButton1);
             }
-
-            ////////////////
-
             p1 = Player.createPlayer(Color.BLUE);
             p2 = Player.createPlayer(Color.RED);
             playerBlueScore = p1.GetScore();
-
             blueAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p1.picture + ".png")));
             blueName.setText(p1.getPlayerName());
-
-
             playerRedScore = p2.GetScore();
             redAvatar.setIcon(new ImageIcon(getClass().getResource("/" + p2.picture + ".png")));
             redName.setText(p2.getPlayerName());
-
-
         }
     }//GEN-LAST:event_newGameBtnActionPerformed
     private boolean allButtonsFilled() {
@@ -851,14 +840,11 @@ public class SOS extends javax.swing.JFrame {
 
 // Method to determine the winner
     private void determineWinner() {
-        // JOptionPane.showMessageDialog(null, p2.GetScore());
         if (p2.GetScore() > p1.GetScore()) {
             JOptionPane.showMessageDialog(null, "Red Player Wins!");
-            //catchPhraseBlue(p1.winCatchphrase);
             p1.WinCatchphrase(catchPhraseRed, p2);
         } else if (p2.GetScore() < p1.GetScore()) {
             JOptionPane.showMessageDialog(null, "Blue Player Wins!");
-            //catchPhraseRed(p2.winCatchphrase);
             p2.WinCatchphrase(catchPhraseBlue, p1);
         } else {
             JOptionPane.showMessageDialog(null, "Draw!");
@@ -911,8 +897,6 @@ public class SOS extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SOS().setVisible(true);
-
-                //Player p1 = new Rick("Red");
             }
         });
         try {
@@ -931,13 +915,9 @@ public class SOS extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SOS().setVisible(true);
-
             }
         });
 
